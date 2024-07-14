@@ -1,0 +1,7 @@
+  rm(list = ls(all.names = TRUE))
+  library(ggplot2)
+  library(egg)
+  a<-read.csv("bin_stats.csv")
+  #str(a)
+  a$Class<-factor(a$Class,levels=c("Alphaproteobacteria","Gammaproteobacteria","Acidobacteriae","Nitrososphaeria","Thermoplasmata","BSN033","Other","Lokiarchaeia","Bathyarchaeia"))
+  ggplot(a, aes(x=Completeness, y=Redundancy, shape = Site,color=Class)) +geom_point(alpha=0.7,size=3, stroke = 2)+theme_article()+scale_size(range = c(2, 12), name="Relative Abundnace")+scale_color_manual(values=c("#000000","#252525","#525252","#737373","#969696","#bdbdbd","#d9d9d9","#6a3d9a","red"))+theme(axis.text.y=element_text(size=12),axis.text.x=element_text(size=12,),strip.text = element_text(size=12),legend.text=element_text(size=12),legend.title=element_text(size=12),axis.title.x=element_text(size=12),axis.title.y=element_text(size=12))+scale_shape_manual(values = c(0,1,2))
